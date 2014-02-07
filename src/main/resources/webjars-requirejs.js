@@ -5,6 +5,9 @@
 //
 requirejs.config({
     shim: {
-        'flight': [ 'webjars!jquery.js', 'webjars!es5-shim.js', 'webjars!es5-sham.js' ]
+        'flight': {
+            deps: [ 'webjars!jquery.js', 'webjars!es5-shim.js', 'webjars!es5-sham.js' ],
+            exports: 'flight'
+        }
     }
 });

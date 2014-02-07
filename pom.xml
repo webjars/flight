@@ -56,6 +56,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <upstream.version>1.1.2</upstream.version>
         <upstream.url>https://github.com/twitter/flight/archive</upstream.url>
+        <package.url>https://github.com/flightjs/flight/releases/download/v${upstream.version}</package.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
 
@@ -67,6 +68,7 @@
                 <version>1.0-beta-4</version>
                 <executions>
                     <execution>
+                        <id>flight-archives</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>download-single</goal>
@@ -75,6 +77,30 @@
                             <url>${upstream.url}</url>
                             <fromFile>v${upstream.version}.zip</fromFile>
                             <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flight-package</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <url>${package.url}</url>
+                            <fromFile>flight.js</fromFile>
+                            <toDir>${destDir}</toDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flight-package-min</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <url>${package.url}</url>
+                            <fromFile>flight.min.js</fromFile>
+                            <toDir>${destDir}</toDir>
                         </configuration>
                     </execution>
                 </executions>
