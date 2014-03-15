@@ -1,13 +1,9 @@
-/*global requirejs */
-
-// Ensure any request for this webjar brings in dependencies. For example if this webjar contains
-// bootstrap.js which depends on jQuery then you would have the following configuration.
-//
 requirejs.config({
+    paths: { "flight": webjars.path("flight", "flight") },
     shim: {
-        'flight': {
-            deps: [ 'webjars!jquery.js', 'webjars!es5-shim.js', 'webjars!es5-sham.js' ],
-            exports: 'flight'
+        "flight": {
+            deps: [ "jquery", "es5-shim", "es5-sham" ],
+            exports: "flight"
         }
     }
 });
